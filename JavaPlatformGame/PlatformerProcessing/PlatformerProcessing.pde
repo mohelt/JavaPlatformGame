@@ -49,7 +49,15 @@ void draw(){
   for(Sprite s: platforms)
     s.display();
 } 
-
+  boolean checkCollision(Sprite s1, Sprite s2){
+  boolean noXOverlap = s1.getRight <= s2.getLeft() || s1.getLeft() >= s2.getRight();
+  boolean noYOverlap = s1.getBottom <= s2.getTop() || s1.getTop() >= s2.getBottom();
+  if(noXOverlap || noYOverlap){
+  return false;
+  }else {
+  return true;
+  }
+}
 
 void createPlatforms(String filename){
   String[] lines = loadStrings(filename);
