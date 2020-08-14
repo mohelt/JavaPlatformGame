@@ -59,7 +59,16 @@ void draw(){
     s.display();
 
 } 
-
+public boolean isOnPlatforms(Sprite s, ArrayList<Sprite> walls){
+s.center_y -= 5;
+ArrayList<Sprite> col_list = checkCollisionList(s, walls);
+s.center_y -= 5;
+if (col_list.size() > 0){
+return true;
+}else {
+return false;
+}
+}
 // implement this method.
 public void resolvePlatformCollisions(Sprite s, ArrayList<Sprite> walls){
   // add gravity to change_y of sprite
@@ -187,6 +196,9 @@ void keyPressed(){
   }
   else if(keyCode == LEFT){
     player.change_x = -MOVE_SPEED;
+    
+  }else if (key == 'a' && isOnPlatforms(player, platforms)){
+  player.change_y = -JUMP_SPEED;
   }
 }
 
